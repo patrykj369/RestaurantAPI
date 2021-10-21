@@ -34,8 +34,6 @@ namespace RestaurantAPI.Controllers
             {
                 return StatusCode(400);
             }
-            
-            
         }
         
     }
