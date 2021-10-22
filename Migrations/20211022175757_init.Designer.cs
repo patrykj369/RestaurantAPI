@@ -9,8 +9,8 @@ using RestaurantAPI.Entities;
 namespace RestaurantAPI.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20211021201254_Init")]
-    partial class Init
+    [Migration("20211022175757_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -75,9 +75,6 @@ namespace RestaurantAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Address")
-                        .HasColumnType("int");
-
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
@@ -122,11 +119,13 @@ namespace RestaurantAPI.Migrations
 
             modelBuilder.Entity("RestaurantAPI.Entities.Restaurant", b =>
                 {
-                    b.HasOne("RestaurantAPI.Entities.Address", null)
+                    b.HasOne("RestaurantAPI.Entities.Address", "Address")
                         .WithOne("Restaurant")
                         .HasForeignKey("RestaurantAPI.Entities.Restaurant", "AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("RestaurantAPI.Entities.Address", b =>

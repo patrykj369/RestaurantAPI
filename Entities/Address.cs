@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 
 namespace RestaurantAPI.Entities
@@ -13,5 +14,6 @@ namespace RestaurantAPI.Entities
         public string PostalCode { get; set; }
 
         public virtual Restaurant Restaurant { get; set; }
+        
     }
 }

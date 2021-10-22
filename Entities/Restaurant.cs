@@ -17,7 +17,7 @@ namespace RestaurantAPI.Entities
         public string ContactNumber { get; set; }
 
         public int AddressId { get; set; }
-        public virtual  AddressFamily Address { get; set; }
+        public virtual  Address Address { get; set; }
         public virtual List<Dish> Dishes { get; set; }
     }
 }
