@@ -15,8 +15,6 @@ namespace RestaurantAPI.Controllers
     public class RestaurantController : ControllerBase
     {
         private readonly IRestaurantService _restaurantService;
-        private readonly RestaurantDbContext _dbContext;
-        private readonly IMapper _mapper;
 
         public RestaurantController(IRestaurantService restaurantService)
         {
