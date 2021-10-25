@@ -14,8 +14,8 @@ namespace RestaurantAPI.Services
         RestaurantDto GetById(int id);
         IEnumerable<RestaurantDto> GetAll();
         int Create(CreateRestaurantDto dto);
-
         bool Delete(int id);
+        bool Edit(int id, EditRestaurantDto dto);
     }
 
     public class RestaurantService : IRestaurantService
@@ -77,6 +77,24 @@ namespace RestaurantAPI.Services
             _dbContext.SaveChanges();
 
             return true;
+        }
+
+        public bool Edit(int id, EditRestaurantDto dto)
+        {
+            var restaurant = _dbContext
+                .Restaurants
+                .FirstOrDefault(x => x.Id == id);
+
+            if (restaurant is null) return false;
+            
+            restaurant.Name = dto.Name;
+            restaurant.Description = dto.Description;
+            restaurant.HasDelivery = dto.HasDelivery;
+            
+            _dbContext.SaveChanges();
+
+            return true;
+
         }
     }
 }
