@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using RestaurantAPI.Exceptions;
 
 namespace RestaurantAPI.Middleware
 {
@@ -15,11 +16,17 @@ namespace RestaurantAPI.Middleware
         {
             _logger = logger;
         }
+
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
             {
                 await next.Invoke(context);
+            }
+            catch (NotFoundExceptions notFoundException)
+            {
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(notFoundException.Message);
             }
             catch (Exception e)
             {
