@@ -52,9 +52,9 @@ namespace RestaurantAPI.Controllers
 
         [HttpGet]
         //[Authorize(Policy = "MinimumAddedRestaurants")] - polityka minimum dodanych restauracji
-        public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery] string searchPhrase)
+        public ActionResult<IEnumerable<RestaurantDto>> GetAll([FromQuery]RestaurantQuery query)
         {
-            var restaurantsDtos = _restaurantService.GetAll(searchPhrase);
+            var restaurantsDtos = _restaurantService.GetAll(query);
             return Ok(restaurantsDtos);
         }
 
